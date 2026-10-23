@@ -13,12 +13,11 @@ INFO = [
     ("foco", "Landing pages, sites e criativos"),
     ("antes", "dymus marketing, Tropeira Alimentos"),
     ("formação", "Design Gráfico, UNA (2026)"),
-    ("stack", "HTML, CSS, JS, React, Next.js"),
-    ("", "Supabase, Vercel, Cloudflare, WordPress"),
-    ("design", "Figma, Affinity, foto e vídeo"),
     ("extra", "Fotografia @ Malta Business"),
     ("xp", "7 anos na área criativa"),
     ("base", "Minas Gerais, Brasil"),
+    ("site", "maltabusiness.vercel.app"),
+    ("insta", "@jp_fmalta"),
 ]
 
 W, PAD, LINE = 490, 22, 23

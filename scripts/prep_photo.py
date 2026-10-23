@@ -2,10 +2,10 @@
 
 1. Remove o fundo (rembg), se estiver instalado.
 2. Aumenta o contraste local com CLAHE (OpenCV), pra dar luz e sombra ao rosto.
-3. Compoe sobre branco puro, pra o fundo virar espaco vazio no ASCII.
+3. Compoe sobre preto puro, pra o fundo virar espaco vazio no ASCII.
 
 Uso: python scripts/prep_photo.py minha-foto.jpg
-Saida: source-prepped.png (escala de cinza)
+Saida: source-prepped.png (escala de cinza, fundo preto)
 """
 import sys
 
@@ -25,16 +25,16 @@ def main(path: str, out: str = "source-prepped.png") -> None:
     except Exception as exc:  # rembg ausente ou sem modelo
         print(f"rembg indisponivel ({exc}); seguindo sem remover o fundo")
 
-    white = Image.new("RGBA", img.size, (255, 255, 255, 255))
-    white.alpha_composite(img)
-    gray = np.array(white.convert("L"))
+    black = Image.new("RGBA", img.size, (0, 0, 0, 255))
+    black.alpha_composite(img)
+    gray = np.array(black.convert("L"))
 
     clahe = cv2.createCLAHE(clipLimit=2.5, tileGridSize=(8, 8))
     gray = clahe.apply(gray)
 
-    # mantem o fundo branco depois do CLAHE
+    # mantem o fundo preto depois do CLAHE
     alpha = np.array(img.split()[-1])
-    gray[alpha < 20] = 255
+    gray[alpha < 20] = 0
 
     Image.fromarray(gray).save(out)
     print(f"ok: {out}")

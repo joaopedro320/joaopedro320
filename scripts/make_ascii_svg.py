@@ -12,7 +12,7 @@ import html
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
-RAMP = " .`:-=+*cs#%@"  # claro (vazio) -> escuro (denso)
+RAMP = " .`:-=+*cs#%@"  # vazio -> denso (denso = claro na tela escura)
 
 CHAR_W, LINE_H = 6.0, 10.0  # grade do SVG
 PAD = 18
@@ -21,7 +21,7 @@ ROW_DUR, ROW_STEP, START = 0.28, 0.045, 0.3
 
 
 def text_image(text: str) -> Image.Image:
-    """Desenha um texto grande em preto no branco, para virar ASCII."""
+    """Desenha um texto grande em branco no preto, para virar ASCII."""
     font = None
     for name in ("DejaVuSans-Bold.ttf", "Poppins-Bold.ttf", "Arial Bold.ttf", "arialbd.ttf"):
         try:
@@ -34,9 +34,9 @@ def text_image(text: str) -> Image.Image:
     probe = ImageDraw.Draw(Image.new("L", (10, 10)))
     x0, y0, x1, y1 = probe.multiline_textbbox((0, 0), text, font=font, align="center", spacing=40)
     x0, y0, x1, y1 = (int(v) for v in (x0, y0, x1, y1))
-    img = Image.new("L", (x1 - x0 + 60, int((y1 - y0) * 1.9) + 60), 255)
+    img = Image.new("L", (x1 - x0 + 60, int((y1 - y0) * 1.9) + 60), 0)
     ImageDraw.Draw(img).multiline_text(
-        (30 - x0, (img.height - (y1 - y0)) // 2 - y0), text, fill=0, font=font, align="center", spacing=40
+        (30 - x0, (img.height - (y1 - y0)) // 2 - y0), text, fill=255, font=font, align="center", spacing=40
     )
     return img
 
@@ -45,7 +45,7 @@ def to_rows(img: Image.Image, cols: int) -> list[str]:
     img = img.convert("L")
     rows = max(1, round(cols * img.height / img.width * (CHAR_W / LINE_H)))
     small = np.asarray(img.resize((cols, rows), Image.LANCZOS), dtype=float) / 255.0
-    idx = ((1.0 - small) * (len(RAMP) - 1)).round().astype(int)
+    idx = (small ** 0.8 * (len(RAMP) - 1)).round().astype(int)  # claro -> denso
     lines = ["".join(RAMP[i] for i in row).rstrip() for row in idx]
     while lines and not lines[0].strip():
         lines.pop(0)
