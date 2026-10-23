@@ -18,6 +18,7 @@ import numpy as np
 from PIL import Image
 
 GAMMA = 0.62  # < 1 clareia os meios-tons
+KEEP = (0.1, 0.0, 0.9, 0.78)  # enquadramento dentro da silhueta: esq, topo, dir, base
 CUTOUT = "data/portrait-cutout.png"
 
 
@@ -47,6 +48,9 @@ def tone(img: Image.Image) -> np.ndarray:
         m = int(0.04 * max(img.size))
         x0, x1 = max(0, xs.min() - m), min(img.width, xs.max() + m)
         y0, y1 = max(0, ys.min() - m), min(img.height, ys.max() + 1)
+        bw, bh = x1 - x0, y1 - y0  # fecha no rosto e nas maos
+        x0, x1 = x0 + int(bw * KEEP[0]), x0 + int(bw * KEEP[2])
+        y0, y1 = y0 + int(bh * KEEP[1]), y0 + int(bh * KEEP[3])
         img = img.crop((x0, y0, x1, y1))
         alpha = alpha[y0:y1, x0:x1]
         mask = mask[y0:y1, x0:x1]

@@ -1,6 +1,6 @@
 name: Make portrait
 
-# Gera o retrato ASCII a partir da sua foto de perfil do GitHub.
+# Gera o retrato em halftone a partir da sua foto de perfil do GitHub.
 # Roda quando os scripts mudam ou pelo botão "Run workflow" (ex.: depois de trocar a foto).
 "on":
   workflow_dispatch: {}
@@ -8,7 +8,7 @@ name: Make portrait
     branches: [main]
     paths:
       - "scripts/prep_photo.py"
-      - "scripts/make_ascii_svg.py"
+      - "scripts/make_halftone_svg.py"
       - "scripts/make_info_card.py"
       - "scripts/make_skills_svg.py"
       - ".github/workflows/make-portrait.yml"
@@ -36,10 +36,10 @@ jobs:
       - run: python scripts/prep_photo.py source-photo.png
       - run: python scripts/make_info_card.py
       - run: python scripts/make_skills_svg.py
-      - run: python scripts/make_ascii_svg.py --cols 90
+      - run: python scripts/make_halftone_svg.py
       - name: Sincroniza com o main antes de commitar
         run: git pull --rebase --autostash origin main
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: gera retrato e paineis [skip ci]"
-          file_pattern: "malta-ascii.svg info-card.svg skills.svg data/portrait-cutout.png"
+          file_pattern: "malta-portrait.svg info-card.svg skills.svg data/portrait-cutout.png"
