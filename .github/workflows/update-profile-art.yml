@@ -13,6 +13,10 @@ name: Update profile art
 permissions:
   contents: write
 
+concurrency:
+  group: profile-art
+  cancel-in-progress: false
+
 jobs:
   heatmap:
     runs-on: ubuntu-latest
@@ -24,6 +28,8 @@ jobs:
       - run: pip install -r scripts/requirements.txt
       - run: python scripts/fetch_contributions.py ${{ github.repository_owner }}
       - run: python scripts/render_heatmap_svg.py
+      - name: Sincroniza com o main antes de commitar
+        run: git pull --rebase --autostash origin main
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: atualiza grafico de contribuicoes [skip ci]"
