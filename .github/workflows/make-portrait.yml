@@ -42,4 +42,4 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: gera retrato e paineis [skip ci]"
-          file_pattern: "malta-ascii.svg info-card.svg skills.svg"
+          file_pattern: "malta-ascii.svg info-card.svg skills.svg data/portrait-cutout.png"
