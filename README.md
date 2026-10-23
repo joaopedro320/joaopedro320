@@ -3,7 +3,7 @@
 <h3><code>malta@github ~ $ whoami</code></h3>
 <table>
 <tr>
-<td valign="top"><img src="./malta-portrait.svg" width="370" alt="Retrato em halftone do Malta" /></td>
+<td valign="top"><img src="./specialist.svg" width="370" alt="Especialista em Landing Pages e Sites" /></td>
 <td valign="top"><img src="./info-card.svg" width="490" alt="Sobre mim" /></td>
 </tr>
 </table>

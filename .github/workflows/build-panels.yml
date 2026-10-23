@@ -1,0 +1,40 @@
+name: Build panels
+
+# Regera os paineis (especialidade, card e habilidades) quando os scripts mudam
+# ou pelo botao "Run workflow".
+"on":
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths:
+      - "scripts/make_specialist_svg.py"
+      - "scripts/make_info_card.py"
+      - "scripts/make_skills_svg.py"
+      - ".github/workflows/build-panels.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+jobs:
+  panels:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python scripts/make_info_card.py
+      - run: python scripts/make_specialist_svg.py
+      - run: python scripts/make_skills_svg.py
+      - name: Sincroniza com o main antes de commitar
+        run: git pull --rebase --autostash origin main
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: gera paineis [skip ci]"
+          file_pattern: "specialist.svg info-card.svg skills.svg"
