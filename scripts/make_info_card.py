@@ -16,7 +16,7 @@ INFO = [
     ("extra", "Fotografia @ Malta Business"),
     ("xp", "7 anos na área criativa"),
     ("base", "Minas Gerais, Brasil"),
-    ("site", "maltabusiness.vercel.app"),
+    ("site", "maltabusiness.com.br"),
     ("insta", "@jp_fmalta"),
 ]
 
