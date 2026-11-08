@@ -1,9 +1,9 @@
 {
  "user": "joaopedro320",
- "updated": "2026-11-07",
- "total": 634,
- "current_streak": 19,
- "longest_streak": 19,
+ "updated": "2026-11-08",
+ "total": 635,
+ "current_streak": 20,
+ "longest_streak": 20,
  "best_day": {
   "date": "2026-11-03",
   "count": 51,
@@ -22,44 +22,9 @@
   "2026-08": 134,
   "2026-09": 47,
   "2026-10": 140,
-  "2026-11": 93
+  "2026-11": 94
  },
  "days": [
-  {
-   "date": "2025-11-02",
-   "count": 0,
-   "level": 0
-  },
-  {
-   "date": "2025-11-03",
-   "count": 0,
-   "level": 0
-  },
-  {
-   "date": "2025-11-04",
-   "count": 0,
-   "level": 0
-  },
-  {
-   "date": "2025-11-05",
-   "count": 0,
-   "level": 0
-  },
-  {
-   "date": "2025-11-06",
-   "count": 0,
-   "level": 0
-  },
-  {
-   "date": "2025-11-07",
-   "count": 0,
-   "level": 0
-  },
-  {
-   "date": "2025-11-08",
-   "count": 0,
-   "level": 0
-  },
   {
    "date": "2025-11-09",
    "count": 0,
@@ -1877,6 +1842,11 @@
   },
   {
    "date": "2026-11-07",
+   "count": 1,
+   "level": 1
+  },
+  {
+   "date": "2026-11-08",
    "count": 0,
    "level": 0
   }
