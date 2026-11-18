@@ -1,9 +1,9 @@
 {
  "user": "joaopedro320",
- "updated": "2026-11-17",
- "total": 685,
- "current_streak": 30,
- "longest_streak": 30,
+ "updated": "2026-11-18",
+ "total": 690,
+ "current_streak": 31,
+ "longest_streak": 31,
  "best_day": {
   "date": "2026-11-03",
   "count": 51,
@@ -22,7 +22,7 @@
   "2026-08": 134,
   "2026-09": 47,
   "2026-10": 140,
-  "2026-11": 144
+  "2026-11": 149
  },
  "days": [
   {
@@ -1857,7 +1857,12 @@
   },
   {
    "date": "2026-11-17",
-   "count": 4,
+   "count": 6,
+   "level": 1
+  },
+  {
+   "date": "2026-11-18",
+   "count": 3,
    "level": 1
   }
  ]
